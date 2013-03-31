@@ -1,14 +1,23 @@
 var frame1delta = '1s';
 var js = new Rect(0, 0, 100, 100).fill("green").addTo(stage);
-
 var css = new Rect(0, 0, 100, 100).fill("red").addTo(stage);
-
 var html = new Rect(0, 0, 100, 100).fill("blue").addTo(stage);
 
-var container = new Rect(90,90,160,160).stroke('white','5');
+var container = new Rect(90,60,160,190).stroke('white','5');
+
+var text1 = new Text('Your Web App').attr({
+  fontFamily: 'Arial, serif',
+  fontSize: '30',
+  textFillColor: 'black',
+  textStrokeColor: 'black',
+  textStrokeWidth: 1,
+  x : 0,
+  y : 65
+});
 
 function htmlsequence2() {
   container.addTo(stage).animate('2s',{strokeColor:'black'});
+  text1.addTo(stage).animate('1.5s',{x:55, y:65});
   js.animate(jskeyanim2);
   css.animate(csskeyanim2);
   html.animate(htmlkeyanim2);  
