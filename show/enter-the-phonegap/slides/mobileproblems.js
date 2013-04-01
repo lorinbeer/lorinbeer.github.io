@@ -1,4 +1,4 @@
-var canvasdim = {x: 1279, y: 799};
+var canvasdim = {x: 1024, y: 768};
 var longshanksdim = {x: 886, y: 574};
 var longshankspath = '../assets/longshanks.png';
 
@@ -15,21 +15,21 @@ new Bitmap(longshankspath)
 });
 
 new Text('The Problem with Mobile Development') 
-.attr({x :- 200,
+.attr({x : -200,
        y : 50,
        fontFamily: 'Arial, sans-serif',
        fontSize: '50',
        textFillColor: 'white'
       })
-.animate('1.0s',{x : 200})
+.animate('1.0s',{x : 80})
 .addTo(stage);
 
-new Text('is all the Devices!')
+new Text('is all the Devices')
 .attr({x : canvasdim.x + 200,
        y : canvasdim.y - 80,
        fontFamily: 'Arial, sans-serif',
        fontSize: '50',
        textFillColor: 'white'
       })
-.animate('1.0s',{x : 200})
+.animate('1.0s',{x : 80})
 .addTo(stage);
