@@ -1,18 +1,33 @@
 
-new Text('Lorin Beer')
+
+function addText(text,sx,sy,dx,dy,t) {
+    new Text(text)
+        .attr({x: sx,
+               y: sy,
+               textFillColor : 'white',
+               fontFamily: 'Arial, sans-serif',
+               fontSize:'50'})
+        .animate(t,{x: dx,
+                    y: dy }, {
+                    easing: 'expoOut'
+                    })
+        .addTo(stage);
+}
+
+// background rect
+new Rect(1200,800,-10,-10)
 .addTo(stage);
 
 new Bitmap('../assets/lorinbeer.jpg')
 .addTo(stage);
 
-new Text('Software Developer at Adobe Systems')
-.addTo(stage);
+addText('Lorin Beer', 1400, 25, 1000, 25, '0.5s');
+/*
+addText('Software Developer at Adobe Systems',-300,-300, 100, 200);
 
-new Text('Apache Commiter on the PhoneGap/Cordova Project')
-.addTo(stage);
+addText('Apache Commiter on the PhoneGap/Cordova Project', 1000, 1000, 200, 300);
 
-new Text('Cordova Contributor: iOS, Android, Blackberry, MobileSpec, Docs')
-.addTo(stage);
+addText('Cordova Contributor: iOS, Android, Blackberry, MobileSpec, Docs',1000,1000,100,400);
 
-new Text('Creator of the Pender Project: Hardware Accelerated Canvas on Mobile')
-.addTo(stage); 
+addText('Pender Project: Hardware Accelerated Canvas on Mobile',1000,-100, 200, 500);
+*/
