@@ -7,7 +7,7 @@ new Rect(0,0,1024,768)
 
 new Bitmap('../assets/contributers/adobe.jpg')
 .attr({x:-350,y:50})
-.animate('1s', {x: -100, y: 50}, {easing:'expoIn'})
+.animate('10s', {x: -100, y: 50}, {easing:'expoIn'})
 .addTo(stage);
 
 
@@ -31,6 +31,6 @@ new Bitmap('../assets/contributers/intel.png')
 
 new Bitmap('../assets/contributers/rim.jpg')
 .attr({x:1000,y:450})
-.animate('1s', {x: 600, y:450}, {easing:'expoIn'})
+.animate('5s', {x: 600, y:450}, {easing:'expoOut'})
 .addTo(stage);
 

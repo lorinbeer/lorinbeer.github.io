@@ -12,7 +12,7 @@ function addText(text,sx,sy,dx,dy) {
         .addTo(stage);
 }
 
-addText('Cordova CLI', -300, 100, 100, 100);
+addText('Cordova CLI', -300, 100, 200, 100);
 
 addText('Cordova Docs',-300,-300, 100, 200);
 
