@@ -1,5 +1,5 @@
 ---
 title: Introduction
-layout: default
+layout: post 
 category: intro
 ---
