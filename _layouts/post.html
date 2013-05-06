@@ -3,27 +3,30 @@ layout: default
 ---
 <div id="post">
 
-<div id="quote">
-    <div id="quotation">
-        <blockquote>{{ page.quotation }}</blockquote> 
+    {% if page.anchor %}
+    <div id="anchor" class="centered">
+        <image src={{ page.anchor }}></image>
+    {% endif %}
     </div>
-    <div id="attribution">
-        {{ page.attribution }}
+    <div class="quote centered">
+        <div class="quotation">
+            <blockquote>{{ page.quotation }}</blockquote> 
+        </div>
+        <div class="attribution">
+            <p>{{ page.attribution }}</p>
+        </div>
     </div>
-<div>
 
-<div class="post">
-    {{ content }}
-</div>
+        {{ content }}
 
-{% if page.series %}
-    {{ '<div class="series">' }} 
-    {% for post in site.tags[page.series] %} 
-    <p>
-        <a href={{ post.url }}>{{ post.title }}</a>
-    </p>
-    {% endfor %}
-    {{ '</div>' }}
-{% endif %}
+        {% if page.series %}
+            {{ '<div class="series">' }} 
+            {% for post in site.tags[page.series] %} 
+            <p>
+                <a href={{ post.url }}>{{ post.title }}</a>
+            </p>
+            {% endfor %}
+            {{ '</div>' }}
+        ${% endif %}
 
 </div>
