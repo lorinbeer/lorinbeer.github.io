@@ -1,23 +1,65 @@
 
-body {
-    font-size: 100%;
+@font-face {
+  font-family: nova-proxima;
+  src: url("/assets/fonts/ProximaNova-Regular.otf") format("opentype");
 }
 
+
+@font-face {
+  font-family: nova-proxima-semi;
+  font-weight: bold;
+  src: url("/assets/fonts/ProximaNova-Semibold.otf") format("opentype");
+}
+
+
+body {
+    font-size: 100%;
+    background-color: #EFEEEE;
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-family: nova-proxima-semi;
+  font-weight: bold;
+}
+
+
 p {
-  font-family: "proxima-nova", sans-serif;
+  font-family: helvetica, sans-serif;
   font-style: normal;
   font-size: 1.25em;
 }
 
 
-
-#post {
-  width: 60%;
-  margin: 5%;
-  padding: 5%;
+.centered {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#quote {
+
+#post {
+  width: 54.80%;
+  margin: 5%;
+  padding: 2%;
+  background-color: #FFFFFF;
+}
+
+
+#anchor {
+  text-align: center;
+}
+
+
+.quote {
   margin: 5%;
   font-family: "georgia", serif;
+  text-align: center;
+}
+.quotation {
+  font-size: .8em;
+  font-style: oblique;
+}
+.attribution {
+  color: #A74F14;
+  font-size: .8em;
 }
