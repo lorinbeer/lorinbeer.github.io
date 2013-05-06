@@ -1,0 +1,23 @@
+
+body {
+    font-size: 100%;
+}
+
+p {
+  font-family: "proxima-nova", sans-serif;
+  font-style: normal;
+  font-size: 1.25em;
+}
+
+
+
+#post {
+  width: 60%;
+  margin: 5%;
+  padding: 5%;
+}
+
+#quote {
+  margin: 5%;
+  font-family: "georgia", serif;
+}
