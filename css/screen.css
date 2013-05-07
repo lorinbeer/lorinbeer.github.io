@@ -13,6 +13,7 @@
 
 
 body {
+    font-family: nova-proxima, helvetica, sans-serif;
     font-size: 100%;
     background-color: #EFEEEE;
 }
@@ -23,6 +24,10 @@ h1, h2, h3, h4, h5 {
   font-weight: bold;
 }
 
+
+ul, li {
+  font-size: 1.10em;
+}
 
 p {
   font-family: nova-proxima, helvetica, sans-serif;
