@@ -4,7 +4,7 @@ subtitle: Why would I want a javascript engine in my mobile native app?
 layout: post
 tags: vatedroid
 series: vatedroid
-anchor: /images/vateplusdroid.png
+anchor: http://i.imgur.com/pDGEH9W.png
 ---
 
 ##Because you want JavaScript
