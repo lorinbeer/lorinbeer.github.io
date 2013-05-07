@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5 {
 
 
 p {
-  font-family: helvetica, sans-serif;
+  font-family: nova-proxima, helvetica, sans-serif;
   font-style: normal;
   font-size: 1.25em;
 }
@@ -36,10 +36,14 @@ p {
   margin-right: auto;
 }
 
+#header {
+  margin-top: 2%;
+  margin-left: 5%;
+}
 
-#post {
-  width: 54.80%;
-  margin: 5%;
+.content {
+  width: 47.8%;
+  margin-left: 5%;
   padding: 2%;
   background-color: #FFFFFF;
 }
