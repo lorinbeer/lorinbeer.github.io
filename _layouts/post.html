@@ -3,9 +3,23 @@ layout: default
 ---
 <div id="post">
 
+    <div class="date" id="title-date">
+      <p> {{ page.date }} </p>
+    </div>
+
+    <div id="title">
+        <h1> {{ page.title }}
+    </div>    
+
+    <hr />   
+ 
+    <div id="subtitle">
+      <h2> {{ page.subtitle }} </h1>
+    </div>
+
     {% if page.anchor %}
     <div id="anchor" class="centered">
-        <image src={{ page.anchor }}></image>
+        <image class="anchor-image" src={{ page.anchor }}></image>
     {% endif %}
     </div>
     <div class="quote centered">
@@ -17,16 +31,20 @@ layout: default
         </div>
     </div>
 
+    <div>
         {{ content }}
+    </div>
 
-        {% if page.series %}
-            {{ '<div class="series">' }} 
-            {% for post in site.tags[page.series] %} 
-            <p>
-                <a href={{ post.url }}>{{ post.title }}</a>
-            </p>
-            {% endfor %}
-            {{ '</div>' }}
-        ${% endif %}
+    {% if page.series %}
+    <div class="series"> 
+    {{ '<h2>Articles in the ' }} {{ page.series }} {{ 'series </h2>'  }}
+    {{ '<hr />' }}
+    {% for post in site.tags[page.series] %} 
+      <p>
+        <a href={{ post.url }}>{{ post.title }}</a>
+      </p>
+    {% endfor %}
+    </div>
+    {% endif %}
 
 </div>

@@ -54,11 +54,27 @@ p {
   background-color: #FFFFFF;
 }
 
+.series {
+  padding: .2em;
+  padding-left: 2%;
+  margin: .5em;
+  background-color: #EFEEEE;
+}
+
+#title-date {
+  margin-top: -5%;
+  font-size: .8em;
+  padding: .05em;
+}
 
 #anchor {
   text-align: center;
 }
 
+.anchor-image {
+    width: 47.8%;
+    height: auto;
+}
 
 .quote {
   margin: 5%;
