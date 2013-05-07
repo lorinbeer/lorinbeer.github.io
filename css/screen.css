@@ -11,6 +11,7 @@
   src: url("/assets/fonts/ProximaNova-Semibold.otf") format("opentype");
 }
 
+/* element styles */
 
 body {
     font-family: nova-proxima, helvetica, sans-serif;
@@ -43,17 +44,39 @@ p {
   font-size: 1.25em;
 }
 
+/* header and footer styles*/
 
-.centered {
-  margin-left: auto;
-  margin-right: auto;
+.content-rule {
+  width: 51.8%;
+  margin-left: 5%;
+  size: 5px; 
 }
-
 
 #header {
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 5%;
+}
+
+#footer {
+  width: 51.8%;
+  margin-left: 5%;
+  margin-right: 5%;
+  overflow: hidden;
+  background-color: #FFFFFF;
+}
+
+.contact {
+  float: left;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 2%;
+  background-color: #FFFFFF;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .content {
