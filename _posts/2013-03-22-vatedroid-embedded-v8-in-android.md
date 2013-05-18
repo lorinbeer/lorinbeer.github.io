@@ -2,6 +2,7 @@
 title: VATEDROID - Introduction
 subtitle: Why would I want a javascript engine in my mobile native app?
 layout: post
+category: tutorial
 tags: vatedroid
 series: vatedroid
 anchor: http://i.imgur.com/pDGEH9W.png
