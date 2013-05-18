@@ -93,9 +93,23 @@ p {
   background-color: #EFEEEE;
 }
 
+/* content type styles */
+
 .date {
   font-size: .8em;
   font-family: Lucida Console;
+}
+
+.subheading {
+  font-size: 2.0em; 
+}
+
+.note {
+  font-size: 1.0em;
+}
+
+.code {
+  font-family: courier;
 }
 
 #title-date {
