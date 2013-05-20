@@ -108,8 +108,9 @@ p {
   font-size: 1.0em;
 }
 
-.code {
+.code, code{
   font-family: courier;
+  font-size: 1.0em;
 }
 
 #title-date {
