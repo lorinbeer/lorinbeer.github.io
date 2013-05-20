@@ -96,7 +96,7 @@ The Android Native Development Kit adds an additional layer of complexity for th
     <summary>
         <span class="subheading" >On Windows</span>
     </summary>
-    <p>the windows path is a semicolon delimited string:<span>    C:\Program Files;C:\WINDOWS;C:\WINDOWS\System32</span></p>
+    <p>the windows path is a semicolon delimited string:</br><code>C:\Program Files;C:\WINDOWS;C:\WINDOWS\System32</code></p>
     <ul>
         <li>Select System from the control panel or right click  My Computer and select properties</li>
     
@@ -104,7 +104,7 @@ The Android Native Development Kit adds an additional layer of complexity for th
         
         <li>Select the Environment Variables button</li>
 
-        <li>add ;/path/to/my/dir to the path variable using a tiny edit box that hasn't changed since windows 3.11</li>
+        <li>add <code>;/path/to/my/dir</code> to the path variable using a tiny edit box that hasn't changed since windows 3.11</li>
     </ul>
 </details>
 
