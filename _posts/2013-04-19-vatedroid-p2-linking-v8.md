@@ -10,7 +10,6 @@ quotation: It is a mistake to look too far ahead. Only one link of the chain of 
 attribution: Winston Churchill
 ---
 
-
 Fuck off, Winston.
 - unattributed
 
@@ -25,38 +24,39 @@ Check out the other things vatedroid is doing by looking at the master developme
 
 #It's Dangerous to go alone! Take this!
 
-a clone of the vatedroid github repo, specifically the tutorial branch
+* a clone of the vatedroid github repo, specifically the tutorial branch
 --update--
 I've created a stand-alone repo for the tutorial branch of vatedroid
 the primary development of vatedroid will continue to be in the main git repo
-
+<pre class="prettyprint">
 git clone https://github.com/lorinbeer/vatedroid-tutorial.git
 cd vatedroid-tutorial
-the Android SDK installed and on your path
+</pre>
+* the Android SDK installed and on your path
 this tutorial written and tested with the mac x86 64 20130219 bundle
-the Android NDK installed and on your path
+* the Android NDK installed and on your path
 this tutorial written and tested with r8e
-V8 static lib files
+* V8 static lib files
 tested with the bleeding edge branch of V8
 If you don't have any of the above, check out the preceding articles in this series
 
 #Let's do this thing!
 
-
 ##1.A turn the vatedroid-tutorial repo into an android project
 After cloning repo and entering the vatedroid-tutorial directory:
+<pre class="prettyprint">
 android update project -p . -n VATEDROID -t android-14
-
+</pre>
 ##1.B create an android project
 with the command line tool:
-
+<pre class="prettyprint">
 android create project \ 
 --target android-17 \
 --name VateDroid \
 --path vatedroid \
 --activity VateDroidActivity \
 --package com.vatedroid
-
+</pre>
 you can read more about the android cli here. The short end of it is this specifies an android os target, project name, path to project root, name for the main activity class and package.
 for a list of targets installed on your system, type:
 android list targets
@@ -83,7 +83,10 @@ mkdir jni
 the Java Native Interface is the framework which allows Java code to call and be called by native code (C/C++). A comprehensive overview of the JNI is a tutorial series in of itself. We'll be covering the bare minimum to get up and running with V8.
 
 ##5. Create C++ and make files
-follow-along: git checkout p2s5
+<div class="follow" onclick="window.open('https://github.com/lorinbeer/vatedroid/tree/p2s5', '_blank')">
+  <span>follow-along: $ git checkout p2s5</span>
+</div>
+
 
 create the C++ implementation files
 touch vatedroid.h 
@@ -93,45 +96,56 @@ touch Android.mk
 leave these emtpy for now 
 
 ##6. Write VateDroid skeleton 
-follow-along: git checkout p2s6
+<div class="follow" onclick="window.open('https://github.com/lorinbeer/vatedroid/tree/p2s6', '_blank')">
+  <span>follow-along: $ git checkout p2s6</span>
+</div>
 
 I recommend checking out the relevant tag in VateDroid's github repo ensufire_tutorial branch, but if you insist on doing this manually...
 
 add the following to jni/vatedroid.h:
 
+<pre class="prettyprint">
+"
 #ifndef _VATEDROID_H
 #define _VATEDROID_H
-#include <jni.h>
-#include <v8.h>
-#include <android/log.h>
+#include &#60;jni.h&#62;
+#include &#60;v8.h&#62;
+#include &#60;android/log.h&#62;
 extern "C" jstring Java_com_vatedroid_VateDroidActivity_feedVatedroid(
     JNIEnv * env, 
     jobject obj, 
     jstring name, 
     jstring message);
 #endif // _VATEDROID_H
+"
+</pre>
 
 Here, we include the jni and v8 headers, a header for android logging, and define a singe function which accepts to java strings as input, and will return a java string as output. The JNIEnv and jobject variables are part of the jni spec, and we'll get into that later.
 
 and the following to jni/vatedroid.cpp:
 
-#include "vatedroid.h"
-extern "C" jstring Java_com_vatedroid_VateDroidActivity_feedVatedroid(
-    JNIEnv * env,
-    jobject obj, 
-    jstring name, 
-    jstring message) { 
-    jstring retval = env->NewStringUTF("stubbywub"); 
-    return retval;
-}
+    #include "vatedroid.h"
+    extern "C" jstring Java_com_vatedroid_VateDroidActivity_feedVatedroid(
+        JNIEnv * env,
+        jobject obj,
+        jstring name,
+        jstring message) {
+        jstring retval = env-&#62NewStringUTF("stubbywub");
+        return retval;
+    }
+
+
 
 simple enough, we ignore all arguments, except for env, which we use to create a new string, and return it.
 
 ##7. Write a make file
-follow-along: git checkout p2s7
+<div class="follow" onclick="window.open('https://github.com/lorinbeer/vatedroid/tree/p2s7', '_blank')">
+  <span>follow-along: $ git checkout p2s7</span>
+</div>
 
 open the Android.mk file with your choice of editor and add the following
 
+<pre class="prettyprint">
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -151,6 +165,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../include
 LOCAL_LDLIBS    := -llog -landroid
 LOCAL_STATIC_LIBRARIES := v8_base v8_nosnapshot
 include $(BUILD_SHARED_LIBRARY)
+</pre>
 
 Android makefile malarky is outside the scope of this tutorial. We won't be changing this much. For our purposes, copy it in and forget about it. For the curious, the ndk comes packaged with makefile documentation, you can read more starting in /docs/NDK-BUILD.html of the NDK root directory.
 
@@ -178,14 +193,18 @@ If your reading this, and have gotten this far, I'm going to assume you're famil
 
 We've got everything lined up to compile a V8 consuming Android App. Note that we are currently not instantiating any V8 classes or calling any V8 code from the ndk stub, nor are we calling our ndk module from Android Java. These are rather complicated tasks, and there are many nuances to both the V8 api and the JNI. You should read that last sentence as: they are the intersection of complex APIs and crappy documentation.
 
-Pitfalls
+#Pitfalls
 
-Always include a min-sdk entry in AndroidManifest.xml
+###Always include a min-sdk entry in AndroidManifest.xml
 
 You could get:
+
+<pre class="prettyprint">
 .../android-ndk-r8e/build/gmsl/__gmsl:512: 
 *** non-numeric second argument to `wordlist' function: ''.  Stop.
-when running ndk-build
+</pre>
+
+when running <code>ndk-build</code>
 
 High-larious, Android.
 This error is due to not supplying a min-sdk version in the AndroidManifest.xml. 
