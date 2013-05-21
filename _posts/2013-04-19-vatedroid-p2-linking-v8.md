@@ -171,17 +171,21 @@ Android makefile malarky is outside the scope of this tutorial. We won't be chan
 
 ##8. Build the project
 
-8.1 build the ndk module with
-ndk-build 
-8.2 build the project with
-ant debug  
+###8.1 build the ndk module with
+<pre class="prettyprint">
+$ ndk-build 
+</pre>
+###8.2 build the project with
+<pre class="prettyprint">
+$ ant debug  
 or 
-ant release
+$ ant release
+</pre>
 You should receive see something like:
 
-Compile++ thumb  : vatedroid <= vatedroid.cpp
-SharedLibrary  : libvatedroid.so
-Install        : libvatedroid.so => libs/armeabi/libvatedroid.so
+    Compile++ thumb  : vatedroid <= vatedroid.cpp
+    SharedLibrary  : libvatedroid.so
+    Install        : libvatedroid.so => libs/armeabi/libvatedroid.so
 
 
 ##9. Push to a device or simulator
