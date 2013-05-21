@@ -5,7 +5,7 @@ subtitle: Executing JavaScript in V8
 category: tutorial
 tags: vatedroid
 series: vatedroid
-anchor: http://i.imgur.com/hEYjdt8.png
+anchor: http://i.imgur.com/sRjPGlR.png
 quotation: A good plan violently executed now is better than a perfect plan executed next week. 
 attribution: George S. Patton
 ---
