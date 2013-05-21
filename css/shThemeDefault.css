@@ -49,6 +49,7 @@
   overflow: visible !important;
 }
 .syntaxhighlighter.collapsed .toolbar {
+  display: none;
   color: blue !important;
   background: white !important;
   border: 1px solid #6ce26c !important;
@@ -60,6 +61,7 @@
   color: red !important;
 }
 .syntaxhighlighter .toolbar {
+  display: none;
   color: white !important;
   background: #6ce26c !important;
   border: none !important;

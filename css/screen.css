@@ -19,7 +19,6 @@ body {
     background-color: #EFEEEE;
 }
 
-
 h1, h2, h3, h4, h5 {
   font-family: nova-proxima-semi;
   font-weight: bold;
@@ -111,6 +110,16 @@ p {
 .code, code{
   font-family: courier;
   font-size: 1.0em;
+}
+
+.follow {
+  padding: 0.25em;
+  background-color: #E3DAC9;
+  cursor: pointer;
+  display: inline-block;
+  border-style: solid;
+  border-width: .15em;
+  margin-top: -5%;
 }
 
 #title-date {
