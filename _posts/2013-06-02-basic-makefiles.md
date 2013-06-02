@@ -10,6 +10,8 @@ quotation: A good plan violently executed now is better than a perfect plan exec
 attribution: George S. Patton
 ---
 
+
+
 # Yet another makefile tutorial
 expressing learned knowledge and skills in a manner understandable to others is an essential part of moving past understanding and towards groking. Or at least that's what I'm claiming.
 If you want something more highbrow, http://www.gnu.org/software/make/manual/make.html.
