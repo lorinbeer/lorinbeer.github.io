@@ -55,6 +55,17 @@ p {
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 5%;
+  margin-right: 5%;
+  width: 47.8%;
+  background-color: #FFFFFF;
+  padding: 2%;
+  border: 2%;
+  text-align:center;
+}
+
+.header_image {
+  width: 100%;
+  text-align:center;
 }
 
 #footer {
