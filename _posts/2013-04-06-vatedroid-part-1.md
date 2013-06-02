@@ -51,7 +51,8 @@ android_arm.release or android_arm.debug specifies the make target
 the build tools will construct a number of object files. the -j flag specifies the number of threads which compile the source. Depending on your system specs, the full compile can take anywhere from 2 to 10 minutes
 6. find the static libraries
 surprisingly, this was the most unclear step: finding where the hell gyp put the v8 static libs. Buried in the 1000 line output from make is the directory to where the static libs are kept
-easiest way is to run: $ find . -name *.a 
+easiest way is to run: 
+    $ find . -name \*\.\a 
 This will recursively locate any files with the .a extension in from the current directory down
 the find should spit out about 14 lines. The two main directories of interest are:
 /out/android_arm.debug/obj.target/tools/gyp/

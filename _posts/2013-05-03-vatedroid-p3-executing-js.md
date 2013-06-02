@@ -121,7 +121,7 @@ declare a global persistent V8 context
 add the following global variable to vatedroid.cpp
 
 <pre class="prettyprint">
-v8::Persistent&lt;v8::Context&gt; PrimaryContext;
+v8::Persistent&#38;lt;v8::Context&#38;gt; PrimaryContext;
 </pre>
 
 A <code>V8::Context</code> is a javascript execution environment. This allows a single instance of V8 to execute multiple, independent js applications.
@@ -142,7 +142,7 @@ and add the following to initVatedroid
 <pre class="prettyprint">
 using namespace v8;
 HandleScope localscope;
-Local&lt; ObjectTemplate &gt; global = ObjectTemplate::New();
+Local&#38;lt; ObjectTemplate &#38;gt; global = ObjectTemplate::New();
 PrimaryContext = Context::New(NULL, global);
 </pre>
 
@@ -171,17 +171,17 @@ follow-along: $ git checkout p3s4
 the code below is the important bits from the feedVatedroid function, this takes it from a stub to a function which accepts a string from Java, compiles it to a v8 script and executes it a v8 context. 
 
 <pre class="prettyprint">
-Handle&lt;String&gt; nme = String::New(env-&gt;GetStringChars(name, &isCopy));
-Handle&lt;String&gt; cmd = String::New(env-&gt;GetStringChars(message, &isCopy));
+Handle&#38;lt;String&#38;gt; nme = String::New(env-&#38;gt;GetStringChars(name, &#38;isCopy));
+Handle&#38;lt;String&#38;gt; cmd = String::New(env-&#38;gt;GetStringChars(message, &#38;isCopy));
 
-Handle&lt;Script&gt; script = Script::Compile(cmd, nme);
+Handle&#38;lt;Script&#38;gt; script = Script::Compile(cmd, nme);
 if (script.IsEmpty()) {
-    return env-&gt;NewStringUTF("Error: Script is empty!");
+    return env-&#38;gt;NewStringUTF("Error: Script is empty!");
 }
-Local&lt; Value &gt; result = script-&gt;Run();
+Local&#38;lt; Value &#38;gt; result = script-&#38;gt;Run();
 
 String::Utf8Value retstr(result);
-retval = env-&gt;NewStringUTF(*retstr);
+retval = env-&#38;gt;NewStringUTF(*retstr);
 return retval;
 </pre>
 
