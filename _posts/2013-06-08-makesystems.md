@@ -10,6 +10,7 @@ quotation: A good plan violently executed now is better than a perfect plan exec
 attribution: George S. Patton
 ---
 
+
 ## Intro
 Build systems are an essential part of any software development project. At the basic level, build systems save time through dependency tracking and providing macros for frequently repeat tasks. But they can also provide powerful tools for code generation 
 While makefiles are great, and being able to read them is an important skill, using Make directly is probably not the most efficient use of time. Automation tools such as Ant, autotools, scons, and CMake provide another layer of abstraction over the build process. This layer of abstraction provides easier to use/read api's, as well as cross platform build file generation.
