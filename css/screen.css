@@ -43,6 +43,14 @@ p {
   font-size: 1.25em;
 }
 
+.page_section {
+  box-shadow: 5px 5px 5px 5px#888;
+  border-style:solid;
+  border-color:#C0C0C0;
+  border-width:1px;
+  border-radius:.35em;
+}
+
 /* header and footer styles*/
 
 .content-rule {
@@ -65,13 +73,11 @@ p {
   padding: 2%;
   border: 2%;
   text-align:center;
-  border-radius: .35em;
 }
 
 .header_image {
   width: 100%;
   text-align:center;
-  border-radius: .35em;
 }
 
 #footer {
@@ -81,7 +87,6 @@ p {
   margin-right: 5%;
   overflow: hidden;
   background-color: #FFFFFF;
-  border-radius: .35em;
 }
 
 .contact {
