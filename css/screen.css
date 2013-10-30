@@ -59,13 +59,18 @@ p {
   size: 5px; 
 }
 
+.project_heading {
+  float:left;
+  margin:2em; 
+}
+
 .fancy {
   font-family: palatino;
 }
 
 #header {
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
   margin-left: 5%;
   margin-right: 5%;
   width: 47.8%;
@@ -83,14 +88,16 @@ p {
 #footer {
   font-family: palatino;
   width: 51.8%;
+  margin-top: 1.5em;
   margin-left: 5%;
   margin-right: 5%;
   overflow: hidden;
   background-color: #FFFFFF;
+  clear:both;
 }
 
 .contact {
-  float: left;
+  /*float: left;*/
   margin-left: 5%;
   margin-right: 5%;
   padding: 2%;
@@ -104,10 +111,13 @@ p {
 
 .content {
   width: 47.8%;
+  margin-top:1.5em;
+  margin-bottom:1.5em;
   margin-left: 5%;
   padding: 2%;
   background-color: #FFFFFF;
   border-radius: .35em;
+  overflow:auto;
 }
 
 .series {
@@ -136,7 +146,7 @@ p {
   font-family: courier;
   font-size: 1.0em;
 }
-
+/*
 .follow {
   padding: 0.25em;
   background-color: #E3DAC9;
@@ -146,7 +156,7 @@ p {
   border-width: .15em;
   margin-top: -5%;
 }
-
+*/
 #title-date {
   margin-top: -5%;
   font-size: .8em;

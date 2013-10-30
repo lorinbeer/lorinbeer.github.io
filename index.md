@@ -2,6 +2,7 @@
 layout: default
 title: enlightenment through superior firepower
 author: Lorin Beer
+projects: Cordova Pender Lister
 ---
 
 #Blog Posts
@@ -14,3 +15,7 @@ author: Lorin Beer
 {% endfor %}
 
 #Projects
+{% assign projects = page.projects | split: " " %}
+{% for proj in projects %}
+   <div class="project_heading"> {{proj}} </div> 
+{% endfor %}
