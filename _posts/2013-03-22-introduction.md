@@ -7,15 +7,11 @@ quotation: We knew the world would not be the same. Few people laughed, few peop
 attribution: Dr. J. Robert Oppenheimer, thoughts on witnessing the first test of the atomic bomb
 ---
 
-#My Name Is...
+##My Name Is...
+###Lorin Beer
+###@lorinbeer on twitter and doggerelverse elsewhere
 
-##Lorin Beer
-##@doggerelverse on twitter and elsewhere
-
-#What do you do?
-
-I split my time between hacking on mobile devices, and spending time with my family.
-
+I work for Adobe Systems in mobile and webtech
 
 <p>
   <a href="http://cordova.apache.org/" target="_blank">I'm an Apache Committer on the Cordova/Phonegap project,</a>
@@ -26,10 +22,10 @@ I split my time between hacking on mobile devices, and spending time with my fam
 <p>
   <a href="http://www.adobe.com/" target="_blank">and developer for Adobe Systems.</a>
 </p>
-#Where are you?
+##I live in...
 
-I live in San Francisco, with my beautiful wife and two precocious children.
+I work in San Francisco, and live with my beautiful wife and two precocious children in East Bay..
 
-#What is this for?
+##This is...
 
-For the past couple years I've been exploring performance of webtech on mobile devices, and embedding efficient dynamic language interpreters in native runtimes. This is the place where I plan to share the knowledge I've gained, as well as talk about the tech that interests me, ie grandstanding and shameless self promotion.
+a place to publish what I learn while hacking on mobile devices.
