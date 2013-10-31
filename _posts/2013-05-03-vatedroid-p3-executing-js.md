@@ -1,6 +1,6 @@
 ---
 layout: post-code
-title: VATEDROID - Part 3 
+title: VATEDROID - Part 3 - Executing JS
 subtitle: Executing JavaScript in V8 
 category: tutorial
 tags: vatedroid
@@ -21,7 +21,7 @@ V8 is a complex piece of software architecture, and discussing all the nuances o
 
 #It's Dangerous to go alone! Take this!
 * a clone of the vatedroid github repo, specifically the tutorial branch
-<pre class="prettyprint">
+<pre class="brush:bash;gutter:false">
 git clone https://github.com/lorinbeer/vatedroid.git
 cd vatedroid
 git branch --track tutorial origin/ensufire_tutorial
@@ -56,7 +56,7 @@ we defined a JNI style c function called feedVatedroid in the vatedroid module
 
 ###include the vatedroid module as static block inside VateDroidActivity
 
-<pre class="prettyprint">
+<pre class="brush:java;gutter:false;">
 static {
     System.loadLibrary("vatewrap");
 }
@@ -68,7 +68,7 @@ static {
 
 execute the function and log value
 
-<pre class="prettyprint">
+<pre class="brush:java;gutter:false">
 String result = feedVatedroid(
     "VateDroid Activity", 
     "function concat(x,y){ return x+y; } concat('foo','bar');");
@@ -77,7 +77,7 @@ Log.d("VATEDROID ACTIVITY VATEDROID 'PRODUCED' RESULT", result);
 
 VateDroidActivity should look something like
 
-<pre class="prettyprint">
+<pre class="brush:java;gutter:false;">
 public class VateDroidActivity extends Activity
 {
     // static initializer loads native library
@@ -102,7 +102,7 @@ The previous is a general usage of the JNI on the Android platform. C style func
 
 Run this code on a device or simulator and see the results on the console log with 
 
-<pre class="prettyprint">
+<pre class="brush:bash;gutter:false;">
 $ adb logcat
 </pre>
 
@@ -120,7 +120,7 @@ It's time to get V8 running. vroom. vroom.
 declare a global persistent V8 context
 add the following global variable to vatedroid.cpp
 
-<pre class="prettyprint">
+<pre class="brush:cpp;gutter:false;">
 v8::Persistent&#38;lt;v8::Context&#38;gt; PrimaryContext;
 </pre>
 
@@ -131,7 +131,7 @@ A <code>V8::Persistent</code> class is a template class which instructs the V8 g
 declare an initVatedroid function
 the code gets more verbose as we move forward. Follow the links to github or checkout the repo to see the full implementation.
 
-<pre class="prettyprint">
+<pre class="brush:cpp;gutter:false;">
 extern "C" void Java_com_vatedroid_VateDroidActivity_initVatedroid(
     JNIEnv * env, 
     jobject obj) ;
@@ -139,7 +139,7 @@ extern "C" void Java_com_vatedroid_VateDroidActivity_initVatedroid(
 
 and add the following to initVatedroid
 
-<pre class="prettyprint">
+<pre class="brush:cpp;gutter:false;">
 using namespace v8;
 HandleScope localscope;
 Local&#38;lt; ObjectTemplate &#38;gt; global = ObjectTemplate::New();
@@ -158,9 +158,9 @@ add the initVatedroid hook to the main activity
 private native void initVatedroid();
 
 and call it from onCreate
-
+<pre class="brush:cpp;gutter:false;">
     initVatedroid();
-
+</pre>
 again, I'm avoiding pasting the entire file here. This is no different than the feedVatedroid function we defined earlier, except that it accepts and returns nothing.
 
 ##3. Expand feedVatedroid
@@ -170,7 +170,7 @@ follow-along: $ git checkout p3s4
 
 the code below is the important bits from the feedVatedroid function, this takes it from a stub to a function which accepts a string from Java, compiles it to a v8 script and executes it a v8 context. 
 
-<pre class="prettyprint">
+<pre class="brush:cpp;gutter:false;">
 Handle&#38;lt;String&#38;gt; nme = String::New(env-&#38;gt;GetStringChars(name, &#38;isCopy));
 Handle&#38;lt;String&#38;gt; cmd = String::New(env-&#38;gt;GetStringChars(message, &#38;isCopy));
 
@@ -202,7 +202,7 @@ This is because our message didn't return anything!
 let's violently execute a plan
 
 change the message sent to vatedroid to:
-<pre class="prettyprint">
+<pre class="brush:cpp;gutter:false;">
 function main() {
     var nothing = "foobar";
     return nothing;
@@ -211,7 +211,7 @@ function main() {
 
 like so:
 
-<pre class="prettyprint">
+<pre class="brush:cpp;gutter:false;">
 String okjs = "function main() { var nothing = \"foobar\"; return nothing; } \n main();";
 String result = feedVatedroid("VateDroid Activity", okjs);
 </pre>
