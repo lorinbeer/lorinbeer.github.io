@@ -12,6 +12,8 @@ attribution: George S. Patton
 
 
 ## Intro
+I was writing a guide for cmake, I thought a quick blurb on some major make systems would be worthwhile.
+
 Build systems are an essential part of any software development project, saving time through dependency tracking and providing macros for frequently repeat tasks. They can also provide a powerful toolset for scripting precompile tasks which is worth getting familiar with.
 
 While makefiles are great, and being able to read them is an important skill, using Make directly is probably not the most efficient use of time. Higher level automation tools such as Ant, autotools, scons, and CMake provide another layer of abstraction over the build process. This layer of abstraction provides easier to use/read api's, as well as cross platform and cross compile support.
