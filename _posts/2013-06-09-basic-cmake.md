@@ -1,29 +1,59 @@
 ---
 layout: post-code
 title: Intro to CMake
-subtitle: crossplatform build systems
+subtitle: quickstart 
 category: tutorial
-tags:
-series:
-anchor: http://i.imgur.com/sRjPGlR.png
+tags: buildsystems 
+series: buildsystems
+anchor: http://i.imgur.com/x2KQxAo.jpg 
 quotation: A good plan violently executed now is better than a perfect plan executed next week.
 attribution: George S. Patton
 ---
 
 
 ## Intro
-While makefiles are great, and being able to read them is an important skill, using Make directly is probably not the most efficient use of time. Automation tools such as Ant, autotools, scons, and CMake provide another layer of abstraction over the build process. This layer of abstraction provides easier to use/read api's, as well as cross platform build file generation.
-## Ant
+hile  eing able to read Makefiles is an important skill, using Make directly is probably not the most efficient use of time. Automation tools such as Ant, autotools, scons, and CMake provide another layer of abstraction over the build process. This layer of abstraction provides easier to use/read api's, dependency checking, as well as cross platform and cross compilation support.
+## basic setup on linux platforms
+for a simple project, two lines is all you need
+<pre class="brush:cpp;gutter:false;">
+project (HelloWorld)
+add_executable(HelloWorld helloworld.c)
+</pre>
+next, run the following in the root of your project
+<pre class="brush:bash;gutter:false">
+$ cmake .
+</pre>
+this will generate a makefile build system a simple project. Afterward, running 'make' will build your project
 
-## autotools
+## linking against an external library
+### include_directories
+specify an additional directory for the compiler to search for include files
+<pre class="brush:cpp;gutter:false">include_directories("include")</pre>
 
-## cmake
+### link_directories
+specify an additional directory for the linker to serach for libraries
+<pre class="brush:cpp;gutter:false;">link_directories("lib")</pre>
 
-## which one to use
-I recommend CMake. It's user friendly enough, and offers true crossplatform support. Documentation is a little light when getting started, but CMake's learning curve is far shallower than raw Make. Autotools offers crossplatform support, but complaints exist concerning efficiency and quirks on Windows, especially with Visual Studio. CMake
+### add_library
+adds a library to the compilation queue of this project
+<pre class="brush:cpp:gutter:false">add_library(submoduleA asubmodule.c)</pre>
+much like add_executable, will generate object files for submoduleA. CMake works out source dependencies and linkage relationships.
 
-# basic syntax
+### target_link_libraries
+<pre class="brush:cpp;gutter:false;">target_link_libraries(HelloWorld asubmodule)</pre>
+linking against both external and iternal libraries is the same, it just needs to be on the linkers search path. 
 
-# multiple cmake files
+### add_subdirectory
+generally, a single CMakeLists.txt specifies for a single executable. You can specify a subdirectory with:
+<pre class="brush:cpp;gutter;false;">add_subdirectory(asubmodule)</pre>
 
-# external dependencies
+
+
+## Generators
+
+
+## Usefule functions
+###cmake_minimum_required
+specify the minimum version of cmake required
+    cmake_minimum_required (VERSION 2.6)
+
