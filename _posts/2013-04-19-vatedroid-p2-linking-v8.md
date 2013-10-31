@@ -1,6 +1,6 @@
 ---
 layout: post-code
-title: VATEDROID - Part 2
+title: VATEDROID - Part 2 - Linking V8
 subtitle: Linking V8 to your Android application
 category: tutorial
 tags: vatedroid
@@ -28,8 +28,8 @@ Check out the other things vatedroid is doing by looking at the master developme
 --update--
 I've created a stand-alone repo for the tutorial branch of vatedroid
 the primary development of vatedroid will continue to be in the main git repo
-<pre class="prettyprint">
-git clone https://github.com/lorinbeer/vatedroid-tutorial.git
+<pre class="brush:bash;gutter:false;">  
+$git clone https://github.com/lorinbeer/vatedroid-tutorial.git
 cd vatedroid-tutorial
 </pre>
 * the Android SDK installed and on your path
@@ -44,12 +44,12 @@ If you don't have any of the above, check out the preceding articles in this ser
 
 ##1.A turn the vatedroid-tutorial repo into an android project
 After cloning repo and entering the vatedroid-tutorial directory:
-<pre class="prettyprint">
+<pre class="brush:bash;gutter:false;">
 android update project -p . -n VATEDROID -t android-14
 </pre>
 ##1.B create an android project
 with the command line tool:
-<pre class="prettyprint">
+<pre class="brush:bash;">
 android create project \ 
 --target android-17 \
 --name VateDroid \
@@ -73,11 +73,13 @@ Regardless of source, copy the V8 lib files to the /libs folder in your project 
 Note: the V8 Header files are included in the vatedroid repo. If you based your project off vatedroid-tutorial then no need to copy these over
 
 The static libraries included in the previous step will be built into our app, allowing us to use them at runtime. To compile our V8 consuming code in the first place, we need the V8 headers.
-Copy the contents /include directory in the root of the V8 source code to the /include directory of your android project root directory.
+Copy the contents \/include directory in the root of the V8 source code to the \/include directory of your android project root directory.
+<pre class="brush:bash;gutter: false;">
 mkdir /path/to/your/app/include 
 cp /path/to/v8/include/* /path/to/your/app/include
+</pre>
 
-##4. Create /jni
+##4. Create jni
 by the method of your choice, create a jni directory in the root of your project
 mkdir jni
 the Java Native Interface is the framework which allows Java code to call and be called by native code (C/C++). A comprehensive overview of the JNI is a tutorial series in of itself. We'll be covering the bare minimum to get up and running with V8.
@@ -104,8 +106,7 @@ I recommend checking out the relevant tag in VateDroid's github repo ensufire_tu
 
 add the following to jni/vatedroid.h:
 
-<pre class="prettyprint">
-"
+<pre class="brush:cpp;">
 #ifndef _VATEDROID_H
 #define _VATEDROID_H
 #include &#60;jni.h&#62;
@@ -113,28 +114,27 @@ add the following to jni/vatedroid.h:
 #include &#60;android/log.h&#62;
 extern "C" jstring Java_com_vatedroid_VateDroidActivity_feedVatedroid(
     JNIEnv * env, 
-    jobject obj, 
+    jobject bj, 
     jstring name, 
     jstring message);
 #endif // _VATEDROID_H
-"
 </pre>
 
-Here, we include the jni and v8 headers, a header for android logging, and define a singe function which accepts to java strings as input, and will return a java string as output. The JNIEnv and jobject variables are part of the jni spec, and we'll get into that later.
+Here, we include the jni and v8 headers, a header for android logging, and define a singe function which accepts to java strings as input, and will return a java string as output. The JNIEnv and jobject variables are part of the jni spec.
 
 and the following to jni/vatedroid.cpp:
 
-    #include "vatedroid.h"
-    extern "C" jstring Java_com_vatedroid_VateDroidActivity_feedVatedroid(
-        JNIEnv * env,
-        jobject obj,
-        jstring name,
-        jstring message) {
-        jstring retval = env-&#62NewStringUTF("stubbywub");
-        return retval;
-    }
-
-
+<pre class="brush:cpp">
+#include "vatedroid.h"
+extern "C" jstring Java_com_vatedroid_VateDroidActivity_feedVatedroid(
+    JNIEnv * env,
+    jobject obj,
+    jstring name,
+    jstring message) {
+    jstring retval = env->NewStringUTF("stubbywub");
+    return retval;
+}
+</pre>
 
 simple enough, we ignore all arguments, except for env, which we use to create a new string, and return it.
 
@@ -145,7 +145,7 @@ simple enough, we ignore all arguments, except for env, which we use to create a
 
 open the Android.mk file with your choice of editor and add the following
 
-<pre class="prettyprint">
+<pre class="brush:xml">
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -172,11 +172,11 @@ Android makefile malarky is outside the scope of this tutorial. We won't be chan
 ##8. Build the project
 
 ###8.1 build the ndk module with
-<pre class="prettyprint">
+<pre class="brush:bash;gutter:false;">
 $ ndk-build 
 </pre>
 ###8.2 build the project with
-<pre class="prettyprint">
+<pre class="brush:bash;gutter:false">
 $ ant debug  
 or 
 $ ant release
@@ -203,14 +203,13 @@ We've got everything lined up to compile a V8 consuming Android App. Note that w
 
 You could get:
 
-<pre class="prettyprint">
+<pre class="brush:bash;gutter:false;">
 .../android-ndk-r8e/build/gmsl/__gmsl:512: 
 *** non-numeric second argument to `wordlist' function: ''.  Stop.
 </pre>
 
 when running <code>ndk-build</code>
 
-High-larious, Android.
 This error is due to not supplying a min-sdk version in the AndroidManifest.xml. 
 There are, in fact, half a dozen weird errors I've come across in a wide variety of Android api's caused by not including a min-sdk version. 
 And which are a P.I.T.A. to debug. 
