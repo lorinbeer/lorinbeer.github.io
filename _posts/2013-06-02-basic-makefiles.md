@@ -3,14 +3,12 @@ layout: post-code
 title: Makefile Tutorial 
 subtitle: 
 category: tutorial
-tags: make 
-series: Make Systems 
+tags: buildsystems 
+series: buildsystems 
 anchor: http://i.imgur.com/x2KQxAo.jpg 
 quotation: A good plan violently executed now is better than a perfect plan executed next week.
 attribution: George S. Patton
 ---
-
-
 
 # Yet another makefile tutorial
 expressing learned knowledge and skills in a manner understandable to others is an essential part of moving past understanding and towards groking. Or at least that's what I'm claiming.

@@ -3,7 +3,7 @@ layout: post-code
 title: Comparing Build Systems 
 subtitle: crossplatform build systems
 category: tutorial
-tags: buildsystems, make
+tags: buildsystems 
 series: buildsystems
 anchor:  http://i.imgur.com/x2KQxAo.jpg 
 quotation: A good plan violently executed now is better than a perfect plan executed next week.
@@ -40,4 +40,4 @@ I recommend CMake. It's user friendly enough, and offers true crossplatform supp
 
 Scons is a fun alternative. While measurably slower than cmake, I'm a sucker for anything that lets me script in python. Having said that, the Apache Cordova project is using node.js for its scripting needs. Tremendously more efficient than writing bash/bat scripts, easy to maintain, stable and fast enough. If I want to do any kind of scripting, I tend to write it in js these days. 
 
-Which one to use is largely application dependant. With large software projects, chances are you don't have a choice. 
+Which one to use is largely application dependant. With large software projects, you may don't have a choice.
