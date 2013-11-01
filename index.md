@@ -5,7 +5,7 @@ author: Lorin Beer
 projects: Cordova,http://cordova.apache.org/ Pender,https://github.com/lorinbeer/pender-android Lister,https://github.com/lorinbeer/lister
 ---
 
-#Blog Posts
+<a href="posts.html" style="text-decoration:none;"><h1>Blog Posts</h1></a>
 
 {% for post in site.posts limit:5 %}
   <p>
@@ -14,7 +14,8 @@ projects: Cordova,http://cordova.apache.org/ Pender,https://github.com/lorinbeer
   </p>
 {% endfor %}
 
-#Projects
+<a href="https://github.com/lorinbeer?tab=repositories" style="text-decoration:none;"><h1>Projects</h1></a>
+
 {% assign projects = page.projects | split: " " %}
 {% for proj in projects %}
     {% assign data = proj | split: "," %}
