@@ -2,7 +2,7 @@
 layout: default
 title: enlightenment through superior firepower
 author: Lorin Beer
-projects: Cordova Pender Lister
+projects: Cordova,http://cordova.apache.org/ Pender,https://github.com/lorinbeer/pender-android Lister,https://github.com/lorinbeer/lister
 ---
 
 #Blog Posts
@@ -17,5 +17,6 @@ projects: Cordova Pender Lister
 #Projects
 {% assign projects = page.projects | split: " " %}
 {% for proj in projects %}
-   <div class="project_heading"> {{proj}} </div> 
+    {% assign data = proj | split: "," %}
+   <div class="project_heading"> <a href="{{data[1]}}">{{data[0]}}</a> </div> 
 {% endfor %}
