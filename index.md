@@ -7,7 +7,7 @@ projects: Cordova Pender Lister
 
 #Blog Posts
 
-{% for post in site.posts %}
+{% for post in site.posts limit:5 %}
   <p>
     <span class="date"> {{ post.date | date_to_string }} >> </span>
     <span><a href="{{ post.url }}">{{ post.title }}</a></span>
