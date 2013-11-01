@@ -14,7 +14,27 @@ attribution: George S. Patton
 expressing learned knowledge and skills in a manner understandable to others is an essential part of moving past understanding and towards groking. Or at least that's what I'm claiming.
 If you want something more highbrow, http://www.gnu.org/software/make/manual/make.html.
 
-## what is a makefile
+## what is GNU Make
+Its a tool for writing build systems. Based on configuration data from a 'makefile', the make utility determines which sections of a program need to be recompiled and issues the appropriate commands.
+
+## using make
+to invoke make in a shell:
+<pre class="brush:bash;gutter:false;">
+$ make
+</pre>
+
+make will first look for 'makefile', or 'Makefile' in that order. If neither is found, make will say:
+<pre class="brush:bash;gutter:false;">
+make: *** No targets specified and no makefile found.  Stop.
+</pre>
+
+to invoke make with an arbitrarily named makefile, use the -f option
+<pre class="brush:bash;gutter:false;">
+$ make -f foomake
+</pre>
+to invoke make with makefile named 'foomake'
+
+## writing makefiles
 a makefile is a set of rules describing how to compile and link a program, as well as the execution of various utility commands
 
 ## what is a rule
@@ -29,7 +49,61 @@ a makefile is a set of rules describing how to compile and link a program, as we
 
 A recipe, therefore explains not only how to build a target, but when to rebuild it as well. If a /<prerequisite/> has been altered since the last build of /<target/>, then /<target/> must also be rebuilt. While irrelevant when there is a small number of rules, large projects save tremendous amounts of compilation time by only rebuilding what has changed since the last build.
 
-It is possible to write rules with no prerequisites. This enables rules like 'clean' to be written which support compilation of a program. This also enables makefiles to be used as a general purpose syntax for writing shell macros. There are good reasons not to do this, the most pertinent being that there are better alternatives. Instead, it can be used as a convenient way of grouping related functionality together. Generally speaking, however, makefiles can offer a convenient method of scripting any time-stamp based maintenance scripts.
+It is possible to write rules with no prerequisites. This enables rules like 'clean' to be written which support development, but don't build anything directly. Make it can be used as a convenient way of grouping related functionality together. Generally speaking, however, makefiles can offer a convenient method of scripting any time-stamp based maintenance scripts. Some cool applications include building books and more general purpose scripting (covered below)
+
+## Makefile build system for a trivial project
+### the project
+single source file project
+
+<pre class="brush:cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("hello world\n");
+    return 0;
+}
+</pre>
+
+one rule makefile
+<pre class="brush:bash;">
+foo: helloworld.c
+	gcc helloworld.c -o foo
+</pre>
+
+running <pre class="brush:bash;gutter:false;">$ make</pre> will rebuild the program to an executable 'foo' every time the source 'helloworld.c' changes
+
+## Makefile build system for a simple project
+for a project with the following simple dependency graph
+
+<image width="40%" src="/assets/svg/simple_dependency_graph.svg"></image>
+
+a simple makefile would look like
+
+<pre class="brush:plain">
+all: amodule.o bmodule.o helloworld.o
+    gcc amodule.o bmodule.o helloworld.o -o foo
+
+amodule.o: amodule.c
+    gcc -c amodule.c -o amodule.o
+
+bmodule.o: bmodule.c
+    gcc -c bmodule.c -o bmodule.o
+
+helloworld.o: helloworld.c
+    gcc -c helloworld.c -o helloworld.o
+
+clean:
+    rm *.o
+    echo clean done
+</pre>
+
+the first definition is interpreted as the default goal when make is run with no arguments. For that reason, we place the rule handling the executable first 
+
+## recursive makefiles
+
+## General Purpose Make
+because make allows
 
 ## making makefiles smarter
 or dumber, if abused
