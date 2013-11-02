@@ -98,7 +98,7 @@ clean:
     echo clean done
 </pre>
 
-the first definition is interpreted as the default goal when make is run with no arguments. For that reason, we place the rule handling the executable first 
+the first definition is interpreted as the default goal when make is run with no arguments. For that reason, we place the rule handling the executable first. The clean target removes intermediate compilation artifacts. 
 
 ## recursive makefiles
 
@@ -108,7 +108,7 @@ because make allows
 ## making makefiles smarter
 or dumber, if abused
 
-there is a heavy amount of data duplication in the example above, which just gets worse as the makefile grows: the list of dependencies in the /<prerequisite/> list and the /<recipe/> list. First rule of programming is to limit data duplication. We can use variables to eliminate this duplication.
+there is a heavy amount of data duplication in the <a href="#simplemakefile">example above</a>, which just gets worse as the makefile grows: the list of dependencies in the /<prerequisite/> list and the /<recipe/> list. First rule of programming is to limit data duplication. We can use variables to eliminate this duplication.
 
     OBJECT_FILES = obj-1.o obj-2.o obj-3.o ...
 
@@ -119,6 +119,40 @@ out : $(OBJECT_FILES)
 
 ### the implicite rule
 make can deduce that a '.o' file depends on a corresponding '.c' file provided they share the same name. These will be compiled with 'cc -c'
+
+## General Purpose Make File
+
+this will attempt to build an arbitrary, multifile c program. This does not attempt to keep track of module dependencies, instead it uses the implicite rule to compile each .c file into a .o file.
+
+<pre class="brush:plain">
+CFLAGS=-g -Wall $(OPTFLAGS)
+LIBS=-ldl $(OPTLIBS)
+PREFIX?=/usr/local
+
+SOURCES=$(wildcard ./**/*.c ./*.c)
+OBJECTS=$(patsubst %.c,%.o,$(SOURCES))
+
+TARGET=build/helloworld
+
+# The Target Build
+all: $(TARGET)
+
+$(TARGET): CFLAGS += -fPIC
+$(TARGET): build $(OBJECTS)
+    $(CC) -o $@ $(OBJECTS)
+
+build:
+    @mkdir -p build
+
+clean:
+    rm -rf build $(OBJECTS)
+</pre>
+
+1. Variable containing Compiler flags. [There are many options](http://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html).
+2. Source files are searched for recursively in the root makefiles directory
+3. Objects are defined by using the list of source files, substituting '.c' for '.o'
+4. define the target and build  
+
 
 ## Common pitfalls
 
@@ -131,4 +165,6 @@ never put anything but the primary compilation target at the top of the file. Wh
 ### tabs only
 whitespace won't cut it, tabs or fail. Make sure that any indented lines begin with an actual tab character, and not the equivalent in other whitespace characters.
 :set noexpandtab in vim to prevent expansion of tabs if you have that set.
- 
+
+### dependency errors
+specifying dependencies incorrectly is a common way a build system written in make fails. This is a big reason why a higher level build system like scons or cmake are recommended over raw make. By incorrectly specifying dependencies, the build system may rebuild or fail to build targets, resulting in frequent use of '$ make clean', which defeats one of the main advantages of a build system.
