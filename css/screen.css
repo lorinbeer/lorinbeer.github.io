@@ -11,6 +11,12 @@
   src: url("/assets/fonts/ProximaNova-Semibold.otf") format("opentype");
 }
 
+@font-face {
+  font-family: entypo;
+  font-weight: bold;
+  src: url("/assets/fonts/Entypo.otf") format("opentype");
+}
+
 /* element styles */
 
 body {
