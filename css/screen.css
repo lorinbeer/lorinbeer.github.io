@@ -59,6 +59,10 @@ p {
 
 /* header and footer styles*/
 
+.icon {
+  width: 10%;
+}
+
 .content-rule {
   width: 51.8%;
   margin-left: 5%;
